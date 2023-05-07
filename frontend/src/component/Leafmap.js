@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 // import MarkerClusterGroup from 'react-leaflet-cluster'
-import MarkerClusterGroup from "leaflet.markercluster";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import osm from "./osm-provider";
 import { useRef } from "react";
@@ -11,11 +10,10 @@ const myIcon = new Icon({
     iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
     iconSize: [25, 32]
 })
-
 const BasicMap = () => {
     const [edata, setEdata] = useState([])
-    const [center, setCenter] = useState({ lat: 13.084622, lng: 80.248357 });
-    const ZOOM_LEVEL = 4;
+    const [center, setCenter] = useState({ lat: 51.0, lng: 19.0 });
+    const ZOOM_LEVEL = 2;
     const mapRef = useRef();
     useEffect(() => {
         (async () => {
@@ -32,8 +30,7 @@ const BasicMap = () => {
         <>
             <div className="row">
                 <div className="col text-center">
-                    <h2>React-leaflet - Basic Openstreet Maps</h2>
-                    <p>Loading basic map using layer from maptiler</p>
+                    <h2>My employee address</h2>
                     <div className="col">
                         <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
                             <TileLayer
@@ -43,19 +40,15 @@ const BasicMap = () => {
                             {
                                 edata.map((item,index) => (
                                     <>
-                                        <MarkerClusterGroup
-                                        
-                                        >
                                             {item.location.coordinates[0] &&
                                                 <Marker position={item.location.coordinates} icon={myIcon} key={index}>
                                                     <Popup>
+                                                    Id:<a href="">{item._id}</a>
                                                         <p style={{ paddingBottom: "0px" }}>Name:{item.name}</p>
                                                         <p>Address:{item.address}</p>
                                                     </Popup>
                                                 </Marker>
-
-                                            }
-                                        </MarkerClusterGroup>
+                                            }  
                                     </>
                                 )
 
