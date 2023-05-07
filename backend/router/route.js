@@ -1,5 +1,5 @@
 import express from "express"
-import { AddEmployee, EditAddress, ViewAll } from "../controller/editAddress.js"
+import { AddEmployee, EditAddress, ViewAll } from "../controller/empcontroller.js"
 export const empRouter=express.Router()
 
 empRouter.post("/add",AddEmployee)
